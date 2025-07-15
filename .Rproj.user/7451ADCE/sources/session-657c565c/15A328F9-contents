@@ -3,3 +3,151 @@ title: "Semidey_L1"
 output: html_document
 date: "2025-07-14"
 ---
+# load package
+library(arrow)
+
+library(dplyr)
+
+library(ggplot2)
+
+# load data
+merged_data <- read_parquet(file = "merged_data.parquet", stringsAsFactors = TRUE)
+
+
+# exploring data
+head(merged_data[, 1:10], 6)
+
+tail(merged_data[,1:10],6)
+
+str(merged_data[, 1:10])
+
+
+# cleaning data
+merged_data <- na.omit(merged_data)
+
+merged_data <- read_parquet(file = "merged_data.parquet", stringsAsFactors = TRUE)
+
+
+# Subsetting Data
+subset_data_az <- subset(merged_data, STATE_ABBR_2010SVI == "AZ")
+
+
+# Summerize Data
+summary(subset_data_az[, 1:10], 6)
+
+
+# Understanding Mean and SD
+upward_mean_2010_az <- mean(subset_data_az$upward_mobility_rate_2010)
+
+upward_sd_2010_az <- sd(subset_data_az$upward_mobility_rate_2010)
+
+upward_mean_2020_az <- mean(subset_data_az$upward_mobility_rate_2020)
+
+upward_sd_2020_az <- sd(subset_data_az$upward_mobility_rate_2020)
+
+
+# Print
+print(upward_mean_2010_az)
+
+upward_mean_2010_az
+
+print(upward_mean_2010_az <- mean(subset_data_az$upward_mobility_rate_2010))
+
+print(upward_mobility_2010_az <- mean(subset_data_az$upward_mobility_rate_2010))
+
+print(upward_sd_2010_az <- sd(subset_data_az$upward_mobility_rate_2010))
+
+print(upward_mean_2020_az <- mean(subset_data_az$upward_mobility_rate_2020))
+
+print(upward_sd_2020_az <- sd(subset_data_az$upward_mobility_rate_2020))
+
+
+# Print for Cali
+
+subset_data_ca <- subset(merged_data, STATE_ABBR_2010SVI == "CA")
+
+print(upward_mean_2010_ca <- mean(subset_data_ca$upward_mobility_rate_2010))
+
+print(upward_sd_2010_ca <- sd(subset_data_ca$upward_mobility_rate_2010))
+
+print(upward_mean_2020_ca <- mean(subset_data_ca$upward_mobility_rate_2020))
+
+print(upward_sd_2020_ca <- mean(subset_data_ca$upward_mobility_rate_2020))
+
+
+# County Level Summary
+print(pima_upward_mean_2010_az <- mean(subset_data_az$upward_mobility_rate_2010[subset_data_az$COUNTY_2010SVI == "Pima County"]))
+
+print(pima_upward_sd_az <- sd(subset_data_az$upward_mobility_rate_2010[subset_data_az$COUNTY_2010SVI == "Pima County"]))
+
+print(delnorte_upward_mean_2010_ca <- mean(subset_data_ca$upward_mobility_rate_2010[subset_data_ca$COUNTY_2010SVI == "Del Norte County"]))
+
+print(delnorte_upward_sd_2010_ca <- sd(subset_data_ca$upward_mobility_rate_2010[subset_data_ca$COUNTY_2010SVI == "Del Norte County"]))
+
+
+# Summary Statistics dplyr
+
+summary_stats_upward_2010 <- subset_data_az %>%
+  group_by(COUNTY_2010SVI) %>%
+  summarize(mean_mobility_2010_az = mean(upward_mobility_rate_2010),
+  sd_mobility_2010_az = sd(upward_mobility_rate_2010))
+  
+  (head(summary_stats_upward_2010))
+
+
+# Visualization with ggplot2
+
+mobility_plot <- ggplot(data = summary_stats_upward_2010,
+mapping = aes(x= COUNTY_2010SVI, y=mean_mobility_2010_az)) +
+  geom_boxplot()
+print(mobility_plot)
+
+
+# State and County Summary
+
+summary_stats_upward_2010_all <- merged_data %>%
+  group_by(STATE_ABBR_2010SVI, COUNTY_2010SVI) %>%
+  summarize(mean_mobility_2010 = mean(upward_mobility_rate_2010),
+            sd_mobility_2010 = sd(upward_mobility_rate_2010))
+
+
+mobility_plot <- ggplot(data = summary_stats_upward_2010_all,
+            mapping = aes(x = STATE_ABBR_2010SVI, y = mean_mobility_2010)) +
+  geom_boxplot()
+print(mobility_plot)
+
+
+summary_stats_upward_2010_all <- summary_stats_upward_2010_all[!is.na(summary_stats_upward_2010_all$STATE_ABBR_2010SVI),]
+
+mobility_plot <-ggplot(data = summary_stats_upward_2010_all,
+            mapping = aes(x= STATE_ABBR_2010SVI, y=mean_mobility_2010,
+                        fill = STATE_ABBR_2010SVI)) +
+  geom_boxplot()
+print(mobility_plot)
+
+
+# Student Activity Homework
+
+#1 Choose County
+
+# Yuma County Chosen
+
+subset_data_Yuma <- subset(merged_data, COUNTY_2010SVI == "Yuma County")
+
+upward_mean_2010_Yuma <- mean(subset_data_Yuma$upward_mobility_rate_2010)
+
+upward_sd_2010_Yuma <- sd(subset_data_Yuma$upward_mobility_rate_2010)
+
+upward_mean_2020_Yuma <- mean(subset_data_Yuma$upward_mobility_rate_2020)
+
+upward_sd_2020_Yuma <- sd(subset_data_Yuma$upward_mobility_rate_2020)
+
+
+# Boxplot for Yuma County
+
+Yuma_plot <- ggplot(data = subset_data_Yuma,
+            mapping = aes(x= upward_mobility_rate_2010, y = mean_mobility_2010)) +
+  geom_boxplot()
+
+print(Yuma_plot)8 
+  
