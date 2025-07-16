@@ -10,6 +10,13 @@ library(dplyr)
 
 library(ggplot2)
 
+library(tidyr)
+
+library(gridExtra)
+
+library(ggpubr)
+
+
 # load data
 merged_data <- read_parquet(file = "merged_data.parquet", stringsAsFactors = TRUE)
 
@@ -145,9 +152,67 @@ upward_sd_2020_Yuma <- sd(subset_data_Yuma$upward_mobility_rate_2020)
 
 # Boxplot for Yuma County
 
-Yuma_plot <- ggplot(data = subset_data_Yuma,
-            mapping = aes(x= upward_mobility_rate_2010, y = mean_mobility_2010)) +
+Yuma_plot_10 <- ggplot(data = subset_data_Yuma,
+            mapping= aes(x= COUNTY_2010SVI, y= upward_mobility_rate_2010,
+                        fill = COUNTY_2010SVI)) +
   geom_boxplot()
+print(Yuma_plot_10)
 
-print(Yuma_plot)8 
+
+Yuma_plot_20 <- ggplot(data = subset_data_Yuma,
+            mapping= aes(x= COUNTY_2010SVI, y= upward_mobility_rate_2020,
+                        fill = COUNTY_2010SVI)) +
+  geom_boxplot()
+print(Yuma_plot_20)
+
+Yuma_plot_all <- grid.arrange(Yuma_plot_10, Yuma_plot_20, ncol = 2)
+
+
+# Box plot finished
+
+Yuma_plot_10 <- ggplot(data = subset_data_Yuma,
+                       mapping = aes(x = COUNTY_2010SVI, 
+                                     y = upward_mobility_rate_2010, 
+                                     fill = COUNTY_2010SVI)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("Yuma" = "blue")) +  # Change "Yuma" if your fill values differ
+  theme(legend.position = "bottom") +
+  labs(fill = "County 2010 SVI")
   
+Yuma_plot_20 <- ggplot(data = subset_data_Yuma,
+                       mapping = aes(x = COUNTY_2010SVI, 
+                                     y = upward_mobility_rate_2020, 
+                                     fill = COUNTY_2010SVI)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("Yuma" = "red")) +   # Change "Yuma" if your fill values differ
+  theme(legend.position = "bottom") +
+  labs(fill = "County 2010 SVI")
+
+Yuma_plot_all <- ggarrange(Yuma_plot_10, Yuma_plot_20,
+                           ncol = 2, common.legend = TRUE, legend = "bottom")
+
+print(Yuma_plot_all)
+
+
+# Box plot attempt 3
+
+Yuma_plot_10 <- ggplot(data = subset_data_Yuma,
+                       mapping = aes(x = COUNTY_2010SVI, y = upward_mobility_rate_2010)) +
+  geom_boxplot(fill = "blue") +
+  theme(legend.position = "none") +
+  labs(title = "Upward Mobility 2010")
+  
+Yuma_plot_20 <- ggplot(data = subset_data_Yuma,
+                       mapping = aes(x = COUNTY_2010SVI, y = upward_mobility_rate_2020)) +
+  geom_boxplot(fill = "red") +
+  theme(legend.position = "none") +
+  labs(title = "Upward Mobility 2020")
+  
+Yuma_plot_all <- ggarrange(Yuma_plot_10, Yuma_plot_20,
+                           ncol = 2, common.legend = FALSE)
+
+print(Yuma_plot_all)
+
+
+# Filter Challenge
+
