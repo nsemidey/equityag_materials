@@ -216,3 +216,5 @@ print(Yuma_plot_all)
 
 # Filter Challenge
 
+subset_greater_than_1_ca <- subset(data = subset_data_ca, )
+
