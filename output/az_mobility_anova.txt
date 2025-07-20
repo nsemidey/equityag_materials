@@ -2,5 +2,198 @@
 COUNTY_2010SVI   14  206.3  14.735   9.534 <2e-16 ***
 Residuals      1511 2335.3   1.546                   
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 48 observations deleted due to missingness
+   geo2010          upward_mobility_rate_2010
+ Length:9598        Min.   : 0.0000          
+ Class :character   1st Qu.: 0.4175          
+ Mode  :character   Median : 0.4888          
+                    Mean   : 0.9083          
+                    3rd Qu.: 0.9806          
+                    Max.   :25.5266          
+                                             
+ upward_mobility_rate_2020 GEO_ID_2010SVI    
+ Min.   : 0.0000           Length:9598       
+ 1st Qu.: 0.4176           Class :character  
+ Median : 0.4888           Mode  :character  
+ Mean   : 0.9082                             
+ 3rd Qu.: 0.9800                             
+ Max.   :25.5266                             
+                                             
+ STATE_FIPS_2010SVI CNTY_FIPS_2010SVI TRACT_2010SVI   
+ Min.   :4.00       Min.   :  1.00    Min.   :   100  
+ 1st Qu.:6.00       1st Qu.: 25.00    1st Qu.:  8601  
+ Median :6.00       Median : 37.00    Median : 99241  
+ Mean   :5.68       Mean   : 48.33    Mean   :213478  
+ 3rd Qu.:6.00       3rd Qu.: 73.00    3rd Qu.:408875  
+ Max.   :6.00       Max.   :115.00    Max.   :988300  
+ NA's   :48         NA's   :48        NA's   :48      
+ CENSUSAREA_2010SVI  STCOFIPS_2010SVI    FIPS_x         
+ Min.   :   0.0220   Min.   :4001     Length:9598       
+ 1st Qu.:   0.4410   1st Qu.:6019     Class :character  
+ Median :   0.8325   Median :6037     Mode  :character  
+ Mean   :  28.2045   Mean   :5729                       
+ 3rd Qu.:   2.0565   3rd Qu.:6073                       
+ Max.   :6991.0990   Max.   :6115                       
+ NA's   :48          NA's   :48                         
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6162 -0.5321 -0.3121  0.1615 24.2319 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81485    0.15953  -11.38   <2e-16 ***
+logpop       1.04174    0.06084   17.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9542 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02981,	Adjusted R-squared:  0.02971 
+F-statistic: 293.2 on 1 and 9542 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6162 -0.5321 -0.3121  0.1615 24.2319 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81485    0.15953  -11.38   <2e-16 ***
+logpop       1.04174    0.06084   17.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9542 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02981,	Adjusted R-squared:  0.02971 
+F-statistic: 293.2 on 1 and 9542 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6162 -0.5321 -0.3121  0.1615 24.2319 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81485    0.15953  -11.38   <2e-16 ***
+logpop       1.04174    0.06084   17.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9542 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02981,	Adjusted R-squared:  0.02971 
+F-statistic: 293.2 on 1 and 9542 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6162 -0.5321 -0.3121  0.1615 24.2319 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81485    0.15953  -11.38   <2e-16 ***
+logpop       1.04174    0.06084   17.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9542 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02981,	Adjusted R-squared:  0.02971 
+F-statistic: 293.2 on 1 and 9542 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6162 -0.5321 -0.3121  0.1615 24.2319 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81485    0.15953  -11.38   <2e-16 ***
+logpop       1.04174    0.06084   17.12   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9542 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02981,	Adjusted R-squared:  0.02971 
+F-statistic: 293.2 on 1 and 9542 DF,  p-value: < 2.2e-16
+
+   geo2010          upward_mobility_rate_2010
+ Length:9598        Min.   : 0.0000          
+ Class :character   1st Qu.: 0.4175          
+ Mode  :character   Median : 0.4888          
+                    Mean   : 0.9083          
+                    3rd Qu.: 0.9806          
+                    Max.   :25.5266          
+                                             
+ upward_mobility_rate_2020 GEO_ID_2010SVI    
+ Min.   : 0.0000           Length:9598       
+ 1st Qu.: 0.4176           Class :character  
+ Median : 0.4888           Mode  :character  
+ Mean   : 0.9082                             
+ 3rd Qu.: 0.9800                             
+ Max.   :25.5266                             
+                                             
+ STATE_FIPS_2010SVI CNTY_FIPS_2010SVI TRACT_2010SVI   
+ Min.   :4.00       Min.   :  1.00    Min.   :   100  
+ 1st Qu.:6.00       1st Qu.: 25.00    1st Qu.:  8601  
+ Median :6.00       Median : 37.00    Median : 99241  
+ Mean   :5.68       Mean   : 48.33    Mean   :213478  
+ 3rd Qu.:6.00       3rd Qu.: 73.00    3rd Qu.:408875  
+ Max.   :6.00       Max.   :115.00    Max.   :988300  
+ NA's   :48         NA's   :48        NA's   :48      
+ CENSUSAREA_2010SVI  STCOFIPS_2010SVI    FIPS_x         
+ Min.   :   0.0220   Min.   :4001     Length:9598       
+ 1st Qu.:   0.4410   1st Qu.:6019     Class :character  
+ Median :   0.8325   Median :6037     Mode  :character  
+ Mean   :  28.2045   Mean   :5729                       
+ 3rd Qu.:   2.0565   3rd Qu.:6073                       
+ Max.   :6991.0990   Max.   :6115                       
+ NA's   :48          NA's   :48                         
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop, data = merged)
+
+Coefficients:
+(Intercept)       logpop  
+     -1.815        1.042  
+
+
+Call:
+lm(formula = upward_mobility_rate_2010 ~ logpop + az, data = merged)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6083 -0.5295 -0.3124  0.1648 24.2389 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -1.81273    0.15954 -11.362   <2e-16 ***
+logpop       1.03868    0.06089  17.058   <2e-16 ***
+az           0.03684    0.03054   1.206    0.228    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.091 on 9541 degrees of freedom
+  (54 observations deleted due to missingness)
+Multiple R-squared:  0.02996,	Adjusted R-squared:  0.02975 
+F-statistic: 147.3 on 2 and 9541 DF,  p-value: < 2.2e-16
+

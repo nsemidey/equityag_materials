@@ -155,14 +155,22 @@ merged_stats_up <- merged %>%
 merged_stats_up <- merged_stats_up %>% filter(!is.na(STATE_ABBR_2010SVI))
 
 
+# Modeling and Nesting
+# Does not work
+
+upward_models <- merged %>%
+  group_by(STATE_ABBR_2010SVI) %>% summarise(model.frame(lm(upward_mobility_rate_2010 ~ POP2010)))
+
+merged <- nest_by(state_group)
+
 
 # Running a Basic Stat Test
 
 merged <- merged_data
 
-az <- merged_data[merged_data$STATE_ABBR_2010SVI == "Arizona", ]
+az <- merged_data[merged_data$STATE_NAME_2010SVI == "Arizona", ]
 
-ca <- merged_data[merged_data$STATE_ABBR_2010SVI == "California", ]
+ca <- merged_data[merged_data$STATE_NAME_2010SVI == "California", ]
 
 dim(merged_data)
 
@@ -179,3 +187,57 @@ print(nrow(ca))
 
 t.test(x = az$upward_mobility_rate_2010, y = ca$upward_mobility_rate_2010)
 
+
+# ANOVA
+
+aov(formula = upward_mobility_rate_2010 ~ COUNTY_2010SVI, data = az)
+
+
+mobility_rate_az_aov <- aov(formula = upward_mobility_rate_2010 ~ COUNTY_2010SVI, data = az)
+
+
+summary(object = mobility_rate_az_aov)
+
+sink(file = "output/az_mobility_anova.txt")
+
+summary(object = mobility_rate_az_aov)
+
+sink()
+
+
+# Linear Regression
+
+summary(merged_data[,1:10], 6)
+
+plot(x = merged_data$upward_mobility_rate_2010, y = merged_data$M_TOTPOP_2010SVI)
+
+merged$logpop <- log10(merged$M_TOTPOP_2010SVI)
+
+plot(x = merged$upward_mobility_rate_2010,
+     y = merged$logpop,
+     xlab = "Upward Mobility",
+     ylab = "log10(population)")
+
+
+mobility_v_pop <- lm(upward_mobility_rate_2010 ~ logpop, data = merged)
+
+summary(mobility_v_pop)
+
+
+sink(file = "output/mobility-pop-regression.txt")
+
+summary(mobility_v_pop)
+
+sink()
+
+
+# Multivariate Regression
+
+merged$az <- ifelse(merged$STATE_NAME_2010SVI == "Arizona", 1, 0)
+
+merged$ca <-ifelse(merged$STATE_NAME_2010SVI == "California", 1, 0)
+
+
+mobility_v_pop_state <- lm(formula = upward_mobility_rate_2010 ~ logpop + az, data = merged)
+
+summary(mobility_v_pop_state)
