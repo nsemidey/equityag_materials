@@ -11,6 +11,7 @@ library(arrow)
 
 library(tidyverse)
 
+library(ggplot2)
 
 # Merge
 
@@ -241,3 +242,32 @@ merged$ca <-ifelse(merged$STATE_NAME_2010SVI == "California", 1, 0)
 mobility_v_pop_state <- lm(formula = upward_mobility_rate_2010 ~ logpop + az, data = merged)
 
 summary(mobility_v_pop_state)
+
+
+# Student Activity
+
+# Box Plot for Upward Mobility 2020
+
+boxplot(formula = upward_mobility_rate_2020 ~ STATE_NAME_2010SVI, data = merged_data)
+
+
+# Anova Analysis
+
+ca_aov_mobility_2010 <- aov(formula = upward_mobility_rate_2010 ~ COUNTY_2010SVI, data = ca)
+
+summary(ca_aov_mobility_2010)
+
+merged$logpop <- log10(merged$M_TOTPOP_2010SVI)
+
+plot(x = merged$upward_mobility_rate_2020, y = merged$logpop,
+     xlab = "Upward Mobility 2020",
+     ylab = "log10(Population)")
+
+mobility_v_pop_2020 <- lm(upward_mobility_rate_2020 ~ logpop, data = merged)
+
+summary(mobility_v_pop_2020)
+
+ggplot(merged, aes(x = upward_mobility_rate_2020, y = logpop)) +
+         geom_point() +
+         geom_smooth(method = "lm", se = TRUE, color = "red")
+
